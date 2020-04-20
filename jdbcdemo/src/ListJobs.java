@@ -10,6 +10,7 @@ public class ListJobs {
 		try (Connection con = 
 				DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "hr", "hr")) {
 			Statement st = con.createStatement();
+			System.out.println(con.getClass());
 			ResultSet rs = st.executeQuery("select job_title from jobs");
 			
 			while(rs.next()) {

@@ -3,4 +3,4 @@ https://www.oracle.com/database/technologies/xe-prior-releases.html
 
 Oracle JDBC Driver location 
 ===========================
-C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib
+C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib\ojdbc6.jar
