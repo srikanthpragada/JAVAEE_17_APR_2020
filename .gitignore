@@ -25,3 +25,6 @@ hs_err_pid*
 # Custom files 
 .metadata/
 upload.bat
+Servers/
+build/
+
