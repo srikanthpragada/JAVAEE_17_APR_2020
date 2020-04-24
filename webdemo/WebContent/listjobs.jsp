@@ -9,8 +9,13 @@
 </head>
 <body>
 	<h1>Jobs</h1>
-	<ul>
-		<%
+	<table border='1' cellpadding="5pt" style='width:100%'>
+	<tr style="background-color:navy;color:white">
+	<th>Id </th>
+	<th>Title</th>
+	<th>Min Salary</th>
+	
+    <%
 		CachedRowSet crs = new OracleCachedRowSet();
 		crs.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
 		crs.setUsername("hr");
@@ -19,9 +24,15 @@
 		crs.execute();
 
 		while (crs.next()) {
-			out.println("<li>" + crs.getString("job_title") + "</li>");
+      %>			
+			<tr>
+			<td> <%= crs.getString("job_id")%> </td>
+			<td> <%= crs.getString("job_title")%> </td>
+			<td> <%= crs.getString("min_salary")%> </td>
+			</tr>
+	  <%		
 		}
-		%>
-	</ul>
+	   %>
+	</table>
 </body>
 </html>
