@@ -33,7 +33,8 @@
 		empBean.updateSalary();
 	%>
 	
-	<h3><jsp:getProperty name="empBean" property="message" /></h3>
+	
+	<h3> ${empBean.message}	</h3>
 
 
 </body>
