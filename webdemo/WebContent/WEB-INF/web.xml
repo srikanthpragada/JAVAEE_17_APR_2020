@@ -4,6 +4,9 @@
   <welcome-file-list>
     <welcome-file>home.html</welcome-file>
   </welcome-file-list>
+  <session-config>
+     <session-timeout>3</session-timeout>
+  </session-config>
   <servlet>
      <servlet-name>nowservlet</servlet-name>
      <servlet-class>servlets.NowServlet</servlet-class>
