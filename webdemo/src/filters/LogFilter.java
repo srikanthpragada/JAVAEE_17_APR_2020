@@ -11,9 +11,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-@WebFilter(dispatcherTypes = {DispatcherType.REQUEST }
-					, urlPatterns = { "/*" })
+// @WebFilter(dispatcherTypes = {DispatcherType.REQUEST }	, urlPatterns = { "/*" })
 public class LogFilter implements Filter {
     public LogFilter() {
         // TODO Auto-generated constructor stub
@@ -25,7 +25,14 @@ public class LogFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;        
 		System.out.println("About to execute : " + req.getRequestURI());		
 		chain.doFilter(request, response);   // Execute endpoint
-		response.getWriter().write("<hr/>Srikanth Technologies");
+		try {
+		    response.getWriter().write("<hr/>Srikanth Technologies");
+		}
+		catch(Exception ex) 
+		{
+			response.getOutputStream().println("<hr/>Srikanth Technologies");
+		}
+		response.flushBuffer();
 	}
 	
 	public void init(FilterConfig fConfig) throws ServletException {

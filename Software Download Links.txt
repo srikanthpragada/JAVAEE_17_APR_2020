@@ -4,3 +4,12 @@ https://www.oracle.com/database/technologies/xe-prior-releases.html
 Oracle JDBC Driver location 
 ===========================
 C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib\ojdbc6.jar
+
+JSTL
+======
+https://mvnrepository.com/artifact/jstl/jstl/1.2
+
+
+Documentation
+=============
+https://javaee.github.io/tutorial/toc.html  (Java EE 8 Tutorial)
