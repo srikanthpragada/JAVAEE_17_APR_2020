@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Search</title>
+<script src="jquery-3.5.0.min.js"></script>
+<script>
+	function searchEmployees() {
+		// URL, parameters, callback function 
+		$.getJSON("empsearch", {"name" : $("#name").val()}, showEmployees)
+	}
+	function showEmployees(emps) {
+		console.log(emps)
+		$("#error").hide(); // Error message
+		$("#emps").hide();  // Table 
+
+		if (emps.length == 0) {
+			$("#error").show();
+			return;
+		}
+
+		rows = "";
+		for (i = 0; i < emps.length; i++) {
+			rows += "<tr><td>" + emps[i].name + "</td><td>" + emps[i].job
+					+ "</td><td>" + emps[i].dept + "</td><td>" + emps[i].salary
+					+ "</td></tr>";
+		}
+
+		$("#emprows").html(rows);
+		$("#emps").show();
+	}
+</script>
+</head>
+<body>
+	<h1>Employee Search</h1>
+
+	Name :
+	<input type="text" id="name" />
+	<button onclick="searchEmployees()">Search</button>
+	<p></p>
+	<h2 style="display: none" id="error">Sorry! No Employee Found!</h2>
+
+	<table id="emps" width="100%" border="1" style="display: none">
+		<tr style="background-color:navy;color:white;">
+			<th>Name</th>
+			<th>Job</th>
+			<th>Department</th>
+			<th>Salary</th>
+	    </tr>		
+		<tbody id="emprows"></tbody>
+	</table>
+
+</body>
+</html>

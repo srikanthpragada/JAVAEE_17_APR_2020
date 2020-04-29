@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Update Employee Salary</title>
+<script src="jquery-3.5.0.min.js"></script>
+<script>
+	function getEmployeeName() {
+		// URL, parameters, callback function 
+		$.get("empname", {"empid" : $("#empid").val()}, showName)
+	}
+	function showName(name) {
+		if (name.length == 0)
+			$("#empid_message").text("Sorry! Invalid Employee ID");
+		else
+			$("#empid_message").text(name);
+	}
+	function updateSalary() {
+		
+	}
+	
+</script>
+</head>
+<body>
+	<h1>Update Employee Salary</h1>
+	Employee Id
+	<br />
+	<input type="number" id="empid" onblur='getEmployeeName()' />
+	<span id="empid_message"></span>
+	<p></p>
+	New Salary
+	<br />
+	<input type="number" id="salary" />
+	<p></p>
+	<button onclick="updateSalary()">Update</button>
+</body>
+</html>

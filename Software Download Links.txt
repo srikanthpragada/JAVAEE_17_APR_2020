@@ -9,6 +9,9 @@ JSTL
 ======
 https://mvnrepository.com/artifact/jstl/jstl/1.2
 
+GSON
+=====
+https://mvnrepository.com/artifact/com.google.code.gson/gson/2.8.6
 
 Documentation
 =============
