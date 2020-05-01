@@ -16,3 +16,7 @@ https://mvnrepository.com/artifact/com.google.code.gson/gson/2.8.6
 Documentation
 =============
 https://javaee.github.io/tutorial/toc.html  (Java EE 8 Tutorial)
+
+Eclipse Tips
+============
+https://www.youtube.com/watch?v=8WcntACvfl4&feature=youtu.be
