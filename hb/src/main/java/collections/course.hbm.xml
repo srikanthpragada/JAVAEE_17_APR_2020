@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="collections.Course" table="HB_COURSES">
+		<id name="name" type="string" length="10">
+			<generator class="assigned" />
+		</id>
+		<property name="description" type="java.lang.String" length="50" />
+		<set name="topics" table="HB_COURSE_TOPICS">
+			<key column="name" />
+			<element column="topic" not-null="true" type="string" />
+		</set>
+	</class>
+
+</hibernate-mapping>
