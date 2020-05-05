@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="manytomany.Emp" table="Employees">
+		<id name="id">
+			<column name="employee_id" />
+			<generator class="increment" />
+		</id>
+		<property name="name" length="20" column="first_name" />
+		<set inverse="true" name="jobs" table="job_history">
+			<key column="employee_id" />
+			<many-to-many class="manytomany.Job" column="job_id" />
+		</set>
+	</class>
+	<class name="manytomany.Job" table="Jobs">
+		<id name="id">
+			<column name="job_id" />
+			<generator class="assigned" />
+		</id>
+		<property name="title" column="job_title" length="20" />
+		<set cascade="all" name="employees" table="job_history">
+			<key column="job_id" />
+			<many-to-many class="manytomany.Emp"
+				column="employee_id" />
+		</set>
+	</class>
+
+</hibernate-mapping>
