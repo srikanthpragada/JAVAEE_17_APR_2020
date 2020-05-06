@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="inh.Person" table="hb_persons">
+        <id name="id" type="int">
+            <generator class="increment" />
+        </id>
+        <discriminator column="PTYPE" length="1" type="string"/>
+        <property name="name"  length="20" type="java.lang.String"/>
+        <subclass discriminator-value="p" name="inh.Player">
+			 <property name="game" length="20" type="java.lang.String" />
+		</subclass>
+		<subclass discriminator-value="s" name="inh.Student">
+			 <property name="course" length="20" type="java.lang.String" />
+		</subclass>
+    </class>
+</hibernate-mapping>

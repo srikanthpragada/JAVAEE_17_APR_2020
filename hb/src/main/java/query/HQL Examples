@@ -1,0 +1,22 @@
+from Employee
+
+from Employee e  where e.salary > 5000
+
+select name, job.title from Employee
+
+select e.name, j.title from Employee as e inner join e.job as j
+
+from Employee e where e.name like 'A%'
+
+select max(salary) from Employee
+
+select  e.job.id,  max(e.salary) from Employee e group by e.job.id 
+
+select  upper(e.name)  || ' - ' ||  upper(e.job.title) from Employee e
+
+from Employee where salary > 10000 or job.title like 'P%'
+from Employee e inner join e.job j where e.salary > 1000 or  j.title like 'P%'
+
+select title from Job j where size(j.employees)  > 2
+
+select name from Employee where salary > (select avg(salary) from Employee)

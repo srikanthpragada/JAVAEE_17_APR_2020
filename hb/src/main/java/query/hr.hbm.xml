@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="query.Employee" table="Employees">
+		<id name="id">
+			<column name="employee_id" />
+			<generator class="increment" />
+		</id>
+		<property name="name" length="20" column="first_name" />
+		<property name="salary" column="salary" />
+		<many-to-one class="query.Job" name="job" column="job_id" />
+	</class>
+	<class name="query.Job" table="Jobs">
+		<id name="id">
+			<column name="job_id" />
+			<generator class="assigned" />
+		</id>
+		<property name="title" column="job_title" length="20" />
+		<set inverse="true" name="employees">
+			<key column="job_id" />
+			<one-to-many class="query.Employee" />
+		</set>
+	</class>
+	
+	<query name="costlyEmployees">
+              from Employee e where e.salary &gt; 10000
+    </query>
+
+</hibernate-mapping>

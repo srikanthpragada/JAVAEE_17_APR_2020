@@ -7,8 +7,8 @@
 			<generator class="increment" />
 		</id>
 		<property name="name" length="20" />
-		<many-to-one cascade="all" class="onetoone.Membership"
-			name="membership" unique="true" />
+		<many-to-one cascade="save-update" class="onetoone.Membership"
+			name="membership" unique="true"  fetch="join" />
 	</class>
 	<class name="onetoone.Membership" table="hb_memberships">
 		<id name="id">

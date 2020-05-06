@@ -13,6 +13,7 @@ public class ListEmployees {
 
 		SessionFactory sf = c.buildSessionFactory();
 		Session s = sf.openSession();
+	 
 		Employee e =  s.get(Employee.class, 1);
 		System.out.println(e.getName());
 		Membership m = e.getMembership();

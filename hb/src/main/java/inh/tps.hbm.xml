@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="inh.Person" table="hb_persons">
+        <id name="id" type="int">
+            <generator class="increment" />
+        </id>
+        <property name="name"  length="20" type="java.lang.String"/>
+        <joined-subclass name="inh.Student" table="hb_students">
+			 <key column="id"/>
+			 <property name="course"  length="20" />
+		</joined-subclass>
+        <joined-subclass name="inh.Player" table="hb_players">
+			 <key column="id"/>
+			 <property name="game"  length="20" />
+		</joined-subclass>
+    </class>
+</hibernate-mapping>
