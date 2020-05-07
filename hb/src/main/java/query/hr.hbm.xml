@@ -24,7 +24,7 @@
 	</class>
 	
 	<query name="costlyEmployees">
-              from Employee e where e.salary &gt; 10000
+           <![CDATA[ from Employee where salary > :salary ]]>
     </query>
 
 </hibernate-mapping>

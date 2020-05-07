@@ -11,7 +11,9 @@ public class NamedQueries {
       c.configure("query/hibernate.cfg.xml");
       Session session = c.buildSessionFactory().openSession();
 
-      List<Employee> employees = session.getNamedQuery("costlyEmployees").list();
+      List<Employee> employees = session.getNamedQuery("costlyEmployees")
+    		                            .setParameter("salary",15000)
+    		                            .list();
       for( Employee e : employees) {
             System.out.printf("%-20s %d\n",e.getName(),e.getSalary());
       }

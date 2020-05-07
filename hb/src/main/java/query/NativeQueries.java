@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.type.StandardBasicTypes;
 
 @Entity
 class JobCount {
@@ -39,25 +40,27 @@ public class NativeQueries {
 		c.addAnnotatedClass(JobCount.class);
 		Session session = c.buildSessionFactory().openSession();
 
-//      List result = session.createSQLQuery("select * from jobs").list();
-//      printQueryResult(result);
+//        List result = session.createSQLQuery("select InitCap(job_title) ,min_salary from jobs").list();
+//        
+//        for(Object obj : result) {
+//        	Object [] cols  = (Object[]) obj;
+//        	System.out.println(cols[0]);
+//        }
 
-//      List<Job> result = (List<Job>) session.createSQLQuery("select * from jobs").addEntity(Job.class).list();
+//      List<Job> result = (List<Job>) session.createSQLQuery("select * from jobs")
+//		                                     .addEntity(Job.class).list();
 //      for(Job j : result)
 //      {
 //    	  System.out.println(j.getTitle());
 //      }
 
-//      List summary = session.createSQLQuery
-//    		  ("select job_id, count(*) count from employees group by job_id").
-//               addScalar("job_id", STRING).
-//               addScalar("count",INTEGER).list();
-//       
-//      for(Object row  : summary)
-//      {
-//    	 Object cols[] = (Object[]) row;
-//    	 System.out.printf("%-10s %3d\n",(String) cols[0], cols[1]);
-//      }
+		List summary = session.createSQLQuery("select job_id, count(*) count from employees group by job_id")
+				.addScalar("job_id", StandardBasicTypes.STRING).addScalar("count", StandardBasicTypes.INTEGER).list();
+
+		for (Object row : summary) {
+			Object cols[] = (Object[]) row;
+			System.out.printf("%-10s %3d\n", cols[0], cols[1]);
+		}
 
 		List<JobCount> jobCounts = session
 				.createSQLQuery("select job_id id, count(*) count from employees group by job_id")
