@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-// @Component 
-// @Lazy
+@Component(value="java")
+@Scope(scopeName="prototype")
+@Lazy
 public class JavaBooks implements Books {
 
 	public JavaBooks() {
