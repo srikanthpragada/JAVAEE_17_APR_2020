@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Department Client</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+	function getAllDepts() {
+		$.getJSON("/rest/dept", null, function(depts) {
+			console.log(depts)
+			st = ""
+			for (var i = 0; i < depts.length; i++)
+				st += "<li>" + depts[i].id + "," + depts[i].name + "</li>";
+			$("#depts").html(st);
+		});
+	}
+
+	function addDept() {
+		// Make post request 
+		$.ajax({
+			url : "/rest/dept",
+			type : "post",
+			success : function() {
+				alert("Dept has been added successfully!")
+			},
+			error : function() {
+				alert("Dept was not added due to error!")
+			},
+			data : {
+				"id" : $("#deptid").val(),
+				"name" : $("#deptname").val()
+			}
+		});
+	}
+
+	function deleteDept() {
+		// Make DELETE request 
+		$.ajax({
+			url : "/rest/dept/" + $("#deptid").val(),
+			type : "delete",
+			success : function() {
+				alert("Dept has been deleted successfully!")
+			},
+			error : function(xhr, s) {
+				console.log("Status : " + s)
+				msg = xhr.responseJSON.message
+				console.log("Message : " + msg);
+				alert("Dept was not deleted due to error : " + msg)
+			}
+		});
+	}
+
+	function getDept() {
+		$.ajax({
+			url : "/rest/dept/" + $("#deptid").val(),
+			type : "get",
+			success : function(dept) {
+				$("#deptname").val(dept.name)
+			},
+			error : function(xhr, s, msg) {
+				error = xhr.responseJSON.message
+				// console.log("Status : "  +  s)
+				// console.log("Message : " + error)
+				alert(error)
+			}
+		});
+	}
+	
+	function updateDept() {
+		// Make PUT request 
+		$.ajax({
+			url : "/rest/dept/" + $("#deptid").val(),
+			type : "put",
+			success : function() {
+				alert("Dept has been updated successfully!")
+			},
+			error : function() {
+				alert("Dept was not updated due to error!")
+			},
+			data : {
+				"id" : $("#deptid").val(),
+				"name" : $("#deptname").val()
+			}
+		});
+	}
+	
+	
+</script>
+</head>
+<body>
+	<h1>Department Client</h1>
+	<h2>Add or Delete Department</h2>
+	Id
+	<input type="number" id="deptid" /> Name
+	<input type="text" id="deptname" />
+	<p />
+	<button onclick="getDept()">Get</button>
+	<button onclick="updateDept()">Update</button>
+	<button onclick="addDept()">Add</button>
+	<button onclick="deleteDept()">Delete</button>
+	<hr />
+	<button onclick="getAllDepts()">Get All Departments</button>
+	<ul id="depts">
+	</ul>
+
+</body>
+</html>
