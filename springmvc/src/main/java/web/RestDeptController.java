@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-// @RestController
-// @RequestMapping("/rest/dept")
+@RestController
+@RequestMapping("/rest/dept")
 public class RestDeptController {
 
 	@Autowired

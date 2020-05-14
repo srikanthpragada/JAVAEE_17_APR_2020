@@ -7,13 +7,13 @@
 <html> 
 <head>
 <meta charset="ISO-8859-1">
-<title>Departments List</title>
+<title>Employees</title>
 </head>
 <body>
-	<h2>Departments List</h2>
+	<h2>Employees</h2>
 	<ul>
-		<c:forEach var="dept" items="${depts}">
-			<li>${dept.id}, ${dept.name} &nbsp; <a  href="/employees?id=${dept.id}">Employees</a></li>
+		<c:forEach var="emp" items="${emps}">
+			<li>${emp.name} - ${emp.salary}</li>
 		</c:forEach>
 	</ul>
 </body>

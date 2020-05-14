@@ -16,14 +16,16 @@ public class HelloController {
 	}
 
 	@RequestMapping("/hello")
-	public String greet(@RequestParam(name = "user", required = false) String user, ModelMap model) {
+	public String hello(@RequestParam(name = "user", required = false) String user,
+			ModelMap model) {
 		if (user == null) // if no parameter is passed
 			model.put("user", "Guest");
 		else
 			model.put("user", user);
 
 		model.put("now", LocalDateTime.now().toString());
-		return "hello"; // hello.jsp
+		
+		return "hello"; // view name  - hello.jsp
 	}
 
 }
