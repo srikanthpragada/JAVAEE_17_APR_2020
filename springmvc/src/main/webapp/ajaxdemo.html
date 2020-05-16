@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>AJAX Demo</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+	function getDepartments() {
+		$.getJSON("/departments", null, showDepartments);
+	}
+	function showDepartments(depts) {
+		console.log(depts)
+		st = ""
+		for (var i = 0; i < depts.length; i++)
+			st += "<li>" + depts[i].id + " - " + depts[i].name + "</li>";
+
+		$("#depts").html(st);
+	}
+</script>
+
+</head>
+<body>
+
+	<button onclick="getDepartments()">Get Departments</button>
+
+	<ul id="depts">
+	</ul>
+
+</body>
+</html>

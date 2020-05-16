@@ -10,8 +10,8 @@
 <body>
 	<h2>Add Department</h2>
 	<sf:form method="post" modelAttribute="dept">
-		Id : <sf:input path="id" />
-		Name : <sf:input path="name" />
+		Id : <sf:input path="id" type="number" required="true" />
+		Name : <sf:input path="name" maxlength="20" required="true"  autocomplete="off" />
 		<p></p>
 		<input type="submit" Value="Add Dept" />
 	</sf:form>

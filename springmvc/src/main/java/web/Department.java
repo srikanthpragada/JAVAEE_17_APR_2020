@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -11,6 +12,7 @@ import javax.validation.constraints.Size;
 public class Department {
 	@Id
 	@Column(name = "department_id")
+	@Min(value = 10, message = "Min department number is 10")
 	private int id;
 
 	@Column(name = "department_name")

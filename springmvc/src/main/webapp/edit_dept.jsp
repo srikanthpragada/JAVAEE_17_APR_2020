@@ -13,7 +13,7 @@
 	<h2>Edit Department</h2>
 	<c:if test="${dept != null}">
 		<sf:form method="post" modelAttribute="dept">
-		Id : <sf:input path="id" />
+		Id : <sf:input path="id"  />
 		Name : <sf:input path="name" />
 			<p></p>
 			<input type="submit" Value="Update" />

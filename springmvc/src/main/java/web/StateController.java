@@ -9,33 +9,44 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-// @Controller
+@Controller
 public class StateController {
-	@RequestMapping("/state")
+	@RequestMapping("/cookies")
 	@ResponseBody
-	public String stateDemo(HttpServletRequest req,
-			HttpServletResponse resp, HttpSession s) {
-		resp.setContentType("text/html");
+	public String useCookies(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/html");
 		String st = "";
-		for (Cookie c : req.getCookies())
-			st += c.getName() + " - " + c.getValue() + "<p/>";
+		for (Cookie c : request.getCookies())
+			st += c.getName() + " - " + c.getValue() + "<p></p>";
 
 		
 		// Create session/browser based cookie 
-		Cookie c = new Cookie("lastaccess", 
-				LocalDateTime.now().toString());
-		resp.addCookie(c);
-		
-		// Session attribute
-		s.setAttribute("title", "Demo Application");
-		
-		ServletContext ctx = s.getServletContext();
-		s.setAttribute("name", this.getClass().getName());
+		Cookie c = new Cookie("lastaccess", LocalDateTime.now().toString());
+		// c.setMaxAge(24 * 60 * 60);
+		response.addCookie(c);
 		
 		return st;
+	}
+	
+	@RequestMapping("/session")
+	@ResponseBody 
+	public String useSession(HttpSession session) {
+		// Session attribute
+		session.setAttribute("title", "Demo Application");
+		
+		ServletContext ctx = session.getServletContext();
+		session.setAttribute("name", this.getClass().getName());
+		
+		return "<h2>Session Attribute Created!</h2>";
+	}
+	
+	@RequestMapping("/lastaccess")
+	@ResponseBody 
+	public String lastAccess(@CookieValue("lastaccess") Cookie time) {
+		return "<h2>" + time.getValue()+ "</h2>";
 	}
 }

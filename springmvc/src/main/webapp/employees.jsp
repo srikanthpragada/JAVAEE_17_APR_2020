@@ -10,7 +10,11 @@
 <title>Employees</title>
 </head>
 <body>
-	<h2>Employees</h2>
+	<h2>Employees Of Department : ${param.id}</h2>
+	<c:if test="${emps.size() == 0}">
+	   <h3>Sorry! No employees found!</h3>
+	</c:if>
+	
 	<ul>
 		<c:forEach var="emp" items="${emps}">
 			<li>${emp.name} - ${emp.salary}</li>
