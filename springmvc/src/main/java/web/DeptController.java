@@ -44,19 +44,29 @@ public class DeptController {
 	@ResponseBody
 	public String getDepartmentsXML() throws Exception {
 		StringBuilder xml = new StringBuilder();
-		xml.append("<departments>");
+		xml.append("<Departments>");
 		XmlMapper mapper = new XmlMapper();
 		for (Department d :  depts.findAll())
 		{
 			xml.append(mapper.writeValueAsString(d));
 		}
-		xml.append("</departments>");
+		xml.append("</Departments>");
 		return xml.toString();
 	} 
 	 
-	@RequestMapping(value = "/departments")
+	@RequestMapping(value = "/departments", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Iterable<Department> getDepartments() {
+		return depts.findAll();
+	}
+	
+	
+	// Sends Department objects as XML 
+	@RequestMapping(value = "/depts", 
+		produces = {MediaType.APPLICATION_XML_VALUE}
+	)
+	@ResponseBody
+	public Iterable<Department> getDeptXML() {
 		return depts.findAll();
 	}
 

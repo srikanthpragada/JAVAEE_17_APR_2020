@@ -31,8 +31,8 @@ public class RestDeptController {
 		if (dept.isPresent())
 			return dept.get();
 		else
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-					  "Department Id Not Found");
+			throw new ResponseStatusException
+			     (HttpStatus.NOT_FOUND,  "Department Id Not Found");
 	}
 
 	@PostMapping() // For Http POST request
@@ -45,6 +45,7 @@ public class RestDeptController {
 		} catch (Exception ex) {
 			System.out.println(ex);
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid Data");
+			 
 		}
 	}
 
@@ -65,15 +66,16 @@ public class RestDeptController {
 	}
 
 	@PutMapping("/{id}") // For Http PUT request
-	public void updateDept(@PathVariable("id") int id, Department newDept) {
+	public Department updateDept(@PathVariable("id") int id, Department newDept) {
 		Optional<Department> dept = deptRepo.findById(id);
 		if (dept.isPresent()) {
 			try {
 				Department dbDept = dept.get();
 				dbDept.setName(newDept.getName());
 		        deptRepo.save(dbDept);  	
+		        return dbDept;
 			} catch (Exception ex) {
-				System.out.println(ex);
+				System.out.println("Error  " + ex);
 				throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		} else {
